@@ -9,6 +9,7 @@ noVideo.init = function(){
   //elem.parentNode.removeChild(elem);
   document.getElementById("main_player").style.visibility = "hidden";
   document.getElementById("left_section").style.visibility = "hidden";
+  document.getElementById("ytp-player-content ytp-iv-player-content").style.visibility = "hidden";
 };
 
 if (!noVideo.started) noVideo.init();
