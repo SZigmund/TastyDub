@@ -5,8 +5,9 @@ var noVideo = {
 }
 
 noVideo.init = function(){
-  var elem = document.getElementById("main_player");
-  elem.parentNode.removeChild(elem);
+  //var elem = document.getElementById("main_player");
+  //elem.parentNode.removeChild(elem);
+  document.getElementById("main_player").style.visibility = "hidden";
 };
 
 if (!noVideo.started) noVideo.init();
