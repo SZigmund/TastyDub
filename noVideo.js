@@ -1,8 +1,8 @@
-
+// Version 1.0
 var noVideo = {
 	started: false,
 	version: "00.02"
-}
+};
 logException: function(msg) {  // Log exception to console
   try {   console.log("ERROR: " + msg);}
   catch(err) { console.log("ERROR:logException: " + err.message); }
