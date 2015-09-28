@@ -6,7 +6,7 @@ var noVideo = {
 logException: function(msg) {  // Log exception to console
   try {   console.log("ERROR: " + msg);}
   catch(err) { console.log("ERROR:logException: " + err.message); }
-}
+};
 undisplayElement = function(elementName) {
 	try {
 	   document.getElementById(elementName).style.display = 'none';
@@ -14,7 +14,7 @@ undisplayElement = function(elementName) {
         catch(err) {
            logException("undisplayElement: " + err.message);
         }
-}
+};
 hideElement = function(elementName) {
 	try {
 	   document.getElementById("elementName").style.visibility = "hidden";
@@ -22,7 +22,7 @@ hideElement = function(elementName) {
         catch(err) {
            logException("hideElement: " + err.message);
         }
-}
+};
 noVideo.init = function(){
   //var elem = document.getElementById("main_player");
   //elem.parentNode.removeChild(elem);
