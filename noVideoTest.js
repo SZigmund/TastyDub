@@ -29,9 +29,9 @@ noVideo.init = function(){
   //noVideo.hideElement("ytp-player-content ytp-iv-player-content");
   //noVideo.hideElement("main_player");
   //noVideo.hideElement("left_section");
-  noVideo.undisplayElement("ytp-player-content ytp-iv-player-content");
+  //noVideo.undisplayElement("ytp-player-content ytp-iv-player-content");
   noVideo.undisplayElement("main_player");
-  noVideo.undisplayElement("left_section");
+  //noVideo.undisplayElement("left_section");
 };
 
 if (!noVideo.started) noVideo.init();
