@@ -26,7 +26,7 @@ chatResize.hideElement = function(elementName) {
 chatResize.init = function(){
   //var elem = document.getElementById("main_player");
   //elem.parentNode.removeChild(elem);
-  document.getElementById('main-user-list-room').style.width = "200%";
+  document.getElementById('main-user-list-room').style.width = "800px";
   //chatResize.hideElement("main_player");
   //chatResize.hideElement("left_section");
   //chatResize.undisplayElement("ytp-player-content ytp-iv-player-content");
