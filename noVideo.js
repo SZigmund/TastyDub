@@ -3,7 +3,7 @@ var noVideo = {
 	started: false,
 	version: "00.02"
 }
-noVideo.logException: function(msg) {  // Log exception to console
+noVideo.logException = function(msg) {  // Log exception to console
   try {   console.log("ERROR: " + msg);}
   catch(err) { console.log("ERROR:logException: " + err.message); }
 };
