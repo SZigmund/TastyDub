@@ -412,6 +412,7 @@
 			ml : 0, //max sound length
 			ba : 0, //booth alert
 			hc : false, //history check
+			ss : false, //Snooze Song
 			bg : '',
 			pw : '',
 			afk: {
@@ -434,7 +435,7 @@
 			urlemotes : []
 		},
 		tmp : {
-			version: "1.0.0.6 alpha",
+			version: "1.0.0.7 alpha",
 			script : 'https://dl.dropboxusercontent.com/s/bjsdgjh3b2au077/OrigemScript.js',
 			css : 'https://rawgit.com/OrigemWoot/OrigemWoot/master/CSS/OrigemCSS.css',
 			background : $(".backstrech img").attr("src"),
@@ -471,6 +472,7 @@
 				meh : []
 			},
 			itens: null,
+			ssvol : 0,
 			auth : null,
 			nsubimg : null
 		},
@@ -734,10 +736,13 @@
 					ow.storage.save();
 				},
 				snoozeSong : function(){
-				    if (API.getVolume() = 0) {
-						alert("Disable Snooze");
+				    if (API.getVolume() == 0) {
+						ow.attr.ss = false;
+						API.setVolume(ow.tmp.ssvol);
 					} else {
-						alert("Enable Snooze");
+						ow.attr.ss = true;
+						ow.tmp.ssvol = API.getVolume();
+						API.setVolume(0);
 					}
 				},
 				toggleMenu : function(){
@@ -1142,8 +1147,11 @@
 
 					if ( ow.attr.id )
 						ow.util.djAdvance.djScore(API.getLastMedia());
-					
-					ow.tmp.adv = API.getMedia();
+
+					if ( ow.attr.ss ) 
+						ow.util.djAdvance.unSnooze(API.getLastMedia());
+
+						ow.tmp.adv = API.getMedia();
 /*					
 					if ( ow.attr.hc ){
 						ow.util.history.check(obj);
@@ -1227,6 +1235,12 @@
 				return proc;
 			},
 			djAdvance : {
+				unSnooze :  function(obj){
+					if ( !obj.song || !obj.songInfo )
+						return;
+					ow.attr.ss = false;
+					API.setVolume(ow.tmp.ssvol);
+				},
 				djScore : function(obj){
 					if ( !obj.song || !obj.songInfo )
 						return;
