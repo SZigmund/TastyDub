@@ -1918,9 +1918,6 @@
 				$('.origem-menu-opener, #origem-menu-close').click(
 					ow.gui.events.toggleMenu);
 
-				$('.eta').click(
-					ow.gui.events.snoozeSong);
-
 				$('#origem-menu-page-selector').change(
 					ow.gui.events.updatePage);
 				$('#backgrounds,#backgrounds + .arrowicon').on('click', function () {
@@ -1969,6 +1966,7 @@
 				});
 						
 				$('#main_player .player_sharing').append('<span class="eta"></span>');
+				$('.eta').click(ow.gui.events.snoozeSong);
 
 				jQuery.ajax({
 					type:'GET',
