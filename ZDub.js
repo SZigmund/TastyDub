@@ -1,5 +1,4 @@
-/*	Alternative API		*/
-
+/*	Alternative API as modified by Doc_Z */
 (function(){
 	if (document.location.host.match(/plug\.dj$/i))
 		return;
@@ -31,6 +30,7 @@
 		ROOM_PLAYLIST_UPDATE: 'room_playlist-update',
 		ROOM_PLAYLIST_QUEUE_REORDER: 'room_playlist-queue-reorder',
 		ROOM_PLAYLIST_QUEUE_UPDATE_DUB: 'room_playlist-queue-update-dub',
+		ROOM_PLAYLIST_QUEUE_UPDATE_GRAB: 'room_playlist-queue-update-grabs',
 		ROOM_PLAYLIST_DUB: 'room_playlist-dub'
 	};
 
@@ -334,13 +334,15 @@
 	function getChatContext(){
 		return Dubtrack.Events._events['realtime:chat-message'].filter(function(a){return typeof a == 'object' && typeof a.context == 'object' && a.context.chatEndPointUrl;})[0];		
 	};
-	
+	function updateSongGrabs(data) {
+	    API.chatLog("GRABBED BY: " + data.user.username, "Song Grab");
+	};
 	function updateWaitList(){
 		API.getRESTRoomQueue(function(a){
 			waitlist = a.data;
 			API.trigger('waitListChanged', waitlist);
 		});
-	}
+	};
 	
 	function groupChatMessages(){
 		if (API.chat.groupMessages)
@@ -379,6 +381,7 @@
 	API.on(API.events.ROOM_PLAYLIST_UPDATE, updateWaitList);
 	API.on(API.events.ROOM_PLAYLIST_QUEUE_REORDER, updateWaitList);
 	API.on(API.events.ROOM_PLAYLIST_QUEUE_UPDATE_DUB, updateWaitList);
+	API.on(API.events.ROOM_PLAYLIST_QUEUE_UPDATE_GRAB, updateSongGrabs);
 	updateWaitList();
 })();
 
@@ -435,7 +438,7 @@
 			urlemotes : []
 		},
 		tmp : {
-			version: "1.0.0.7 alpha",
+			version: "1.0.0.6.001 alpha",
 			script : 'https://dl.dropboxusercontent.com/s/bjsdgjh3b2au077/OrigemScript.js',
 			css : 'https://rawgit.com/OrigemWoot/OrigemWoot/master/CSS/OrigemCSS.css',
 			background : $(".backstrech img").attr("src"),
