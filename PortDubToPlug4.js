@@ -1,9 +1,8 @@
 /*	Alternative API as modified by Doc_Z */
 (function(){
-	if (!document.location.host.match(/plug\.dj$/i)){
-	  console.log("Must run on plug");
+	if (!document.location.host.match(/dubtrackz\.fm$/i)){
+	  console.log("Must run on dubtrack");
 	}
-		
 	window.DUB = {};
 	_.extend(DUB, Backbone.Events);
 	window.PLUG = {};
