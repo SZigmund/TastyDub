@@ -332,7 +332,6 @@
 	};
 
 	DUB.exportSongs = function(){
-	  //DUB.getPlaylist();
 	  if (Dubtrack.session.get("username") == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
 	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
@@ -344,9 +343,9 @@
 		var playlist = [];
 		var PLItem = DUBPlaylists.responseJSON.data[i];
 		console.log("------------------------------------------------------------------------------------------------------");
-		console.log("LOADING Playlist: " + PLItem._id + " " + DUBPlaylists.responseJSON.data[1].name) + ": " + PLItem.totalItems.toString();
+		console.log("LOADING Playlist: " + PLItem._id + " " + PLItem.name + ": " + PLItem.totalItems.toString();
 		DUB.getPlaylist(playlist, PLItem._id, PLItem.name, PLItem.totalItems, 1, "", DUB.exportPlaylist);
-	  }
+      }
 	};
 	
 	DUB.exportPlaylist = function(playlist, playlistID, playlistName, playlistCnt) {
@@ -380,6 +379,8 @@
             // the code here will be executed when all four ajax requests resolve.
             // a1 is a list of length 3 containing the response text,
             // status, and jqXHR object for each of the four ajax calls respectively.
+			console.log("DONE");
+			console.log("A1: " + a1.data.length.toString());
     		DUBCurrPlaylist = a1;
             for (var i = 0; i < DUBCurrPlaylist.data.length; i++) {
     	      playlist.push(new API.playListItem(DUBCurrPlaylist.data[i]));
