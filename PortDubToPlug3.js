@@ -115,18 +115,19 @@
 		catch(err) { console.log("DUB.formatTrack: " + err.message); }
 	  };
 
-	console.log("FUN1");
 	var DUBPlaylists = [];
-	PLUG.importSongs();
 })();
 
 (function(){
 	var ow = {
 		main : {
 			init : function(){
+				try {
 				//ow.main.addEvents();
 				console.log("init");
-				//PLUG.importSongs();
+				PLUG.importSongs();
+				}
+				catch(err) { console.log("init: " + err.message); }
 			},
 			addEvents: function(){
 				//$('.community__name').click(PLUG.importSongs);  	//Plug
