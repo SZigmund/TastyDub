@@ -126,27 +126,9 @@
 				ow.main.loadItems();
 			},
 			addEvents: function(){
-				$('.currentSong').click(DUB.exportSongs);		//Dub
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
-				$('.community__name').click(PLUG.importSongs);  	//Plug
+				//$('.community__name').click(PLUG.importSongs);  	//Plug
+				$('.community__name').click(console.log("name"));  	//Plug
 				$('.community__meta').click(console.log("meta"));  	//Plug
-
-				$(window).trigger('resize');
 			},
 		}
 	};
