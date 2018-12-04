@@ -386,10 +386,15 @@
     		}
     		//dubBot.queue.dubQueue = playlist;
     		pageno++;
-    		if (DUBCurrPlaylist.data.length > 0 && filterOn.length === 0)
-    			DUB.getPlaylist(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb);
-    		else
+    		if (DUBCurrPlaylist.data.length > 0 && filterOn.length === 0) {
+    			console.log("recursive call");
+				DUB.getPlaylist(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb);
+			}
+    		else {
+    			console.log("callback");
     			cb(playlist, playlistID, playlistName, playlistCnt);
+    			console.log("after callback");
+			}
     	  });
     	}
         catch(err) { console.log("getPlaylist: " + err.message); }
