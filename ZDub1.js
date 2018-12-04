@@ -343,7 +343,7 @@
 		var playlist = [];
 		var PLItem = DUBPlaylists.responseJSON.data[i];
 		console.log("------------------------------------------------------------------------------------------------------");
-		console.log("LOADING Playlist: " + PLItem._id + " " + PLItem.name + ": " + PLItem.totalItems.toString();
+		console.log("LOADING Playlist: " + PLItem._id + " " + PLItem.name + ": " + PLItem.totalItems.toString());
 		DUB.getPlaylist(playlist, PLItem._id, PLItem.name, PLItem.totalItems, 1, "", DUB.exportPlaylist);
       }
 	};
