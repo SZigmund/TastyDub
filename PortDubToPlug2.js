@@ -12,12 +12,12 @@
 	window.PLUG = {};
 	_.extend(PLUG, Backbone.Events);
 	
-	PLUG.chatLog: function(msg) {
+	PLUG.chatLog = function(msg) {
 	try {
 		API.chatLog(msg);
 	}
 	catch(err) { basicBot.roomUtilities.logException("chatLog: " + err.message); }
-	},
+	};
 
 	PLUG.importSongs = function(){
 	  console.log("TEST");
