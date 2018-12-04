@@ -340,7 +340,7 @@
     catch(err) { UTIL.logException("definePlaylist: " + err.message); }
 	};
 	
-	var DUB.Playlist : [];
+	var DUBPlaylist : [];
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
@@ -752,7 +752,7 @@
 				},
 				exportSongs : function(){
 				  //DUB.getPlaylist();
-				  DUB.Playlist = DUB.definePlaylists();
+				  DUBPlaylist = DUB.definePlaylists();
 				  var plists = DUB.definePlaylists();
 				  console.log("Playlist Len: " + plists.length);
 				  for (var i in plists) {
