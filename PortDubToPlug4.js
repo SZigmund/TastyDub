@@ -4,9 +4,6 @@
 	  console.log("Must run on plug");
 	}
 		
-	if (window.API)
-		return;
-	
 	window.DUB = {};
 	_.extend(DUB, Backbone.Events);
 	window.PLUG = {};
