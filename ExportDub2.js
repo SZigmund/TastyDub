@@ -125,18 +125,14 @@
 	"use strict";
     ExportJSON = function(jsonData, fileName) {
       try {
-        console.log("ExportJSON:0");
-		let dataStr = JSON.stringify(jsonData);
-        let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-        let exportFileDefaultName = fileName + '.json';
-        console.log("ExportJSON:1");
-        let linkElement = document.createElement('a');
-        console.log("ExportJSON:2");
+		var dataStr = JSON.stringify(jsonData);
+        var dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        var exportFileDefaultName = fileName + '.json';
+        var linkElement = document.createElement('a');
         linkElement.setAttribute('href', dataUri);
         linkElement.setAttribute('download', exportFileDefaultName);
-        console.log("ExportJSON:3");
         linkElement.click();
-        console.log("ExportJSON:4");
+        console.log("ExportJSON:Complete");
       }
       catch(err) { console.log("ExportJSON: " + err.message); }
 	};
