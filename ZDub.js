@@ -329,7 +329,7 @@
 		return ajax(url,'GET',null,callback);
 	};
 
-    DUB.definePlaylists: function(playlistID, pageno, filterOn) {
+    DUB.definePlaylists = function() {
     try {
 	  //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
 	  var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
