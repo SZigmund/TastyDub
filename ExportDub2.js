@@ -9,7 +9,7 @@ var DBUAPI = {
 	}
 };
 var	DUBEXPORT = {
-	var DUBPlaylists = [],
+	DUBPlaylists: [],
     exportSongs = function(){
 	  if (DUBAPI.getUsername() == "Doc_Z") {
 	    DUBPlaylists = DUBEXPORT.definePlaylists();
