@@ -739,8 +739,38 @@
 					ow.storage.save();
 				},
 				exportSongs : function(){
-				 return console.log('You no have previous settings.');
+				 //DUB.getPlaylist();
+				 var pl = API.getPlaylists();
+				 console.log("Playlist Len: " + pl.length);
+				 for (var i in pl) {
+					console.log("Playlist Name: " + pl[i].name);
+					console.log("Playlist ID: " + pl[i]._id);
+					//hpl.append(ow.gui.util.addRadioItem(null, pl[i].name, 'owagpl-pl-'+pl[i]._id, 'owagpl-pl-pll', (ow.attr.ag.sel?pl[i]._id==ow.attr.ag.sel:(i==0?true:false))))
+				}
 				},
+
+//getPlaylist: function(playlist, playlistID, pageno, filterOn, cb) {
+// try {
+//		//botDebug.debugMessage(true, "getPlaylist pageno: " + pageno);
+//	  $.when(API.definePlaylist(playlistID, pageno, filterOn)).done(function(a1) {
+//        // the code here will be executed when all four ajax requests resolve.
+//        // a1 is a list of length 3 containing the response text,
+//        // status, and jqXHR object for each of the four ajax calls respectively.
+//		dubBot.queue.dubPlaylist = a1;
+//        for (var i = 0; i < dubBot.queue.dubPlaylist.data.length; i++) {
+//	      playlist.push(new API.playListItem(dubBot.queue.dubPlaylist.data[i]));
+//		}
+//		//dubBot.queue.dubQueue = playlist;
+//		pageno++;
+//		if (dubBot.queue.dubPlaylist.data.length > 0 && filterOn.length === 0)
+//			API.getPlaylist(playlist, playlistID, pageno, filterOn, cb);
+//		else
+//			cb(playlist, playlistID);
+//	  });
+//	}
+//    catch(err) { console.log("getPlaylist: " + err.message); }
+//	},
+				
 				snoozeSong : function(){
 				    if (API.getVolume() == 0) {
 						ow.attr.ss = false;
