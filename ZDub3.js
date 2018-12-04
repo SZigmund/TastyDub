@@ -331,7 +331,7 @@
 		return ajax(url,'GET',null,callback);
 	};
 
-	DUB.exportSongs : function(){
+	DUB.exportSongs = function(){
 	  //DUB.getPlaylist();
 	  DUBPlaylists = DUB.definePlaylists();
 	  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
@@ -362,16 +362,16 @@
 	}
     catch(err) { console.log("DUB.definePlaylists: " + err.message); }
 	};
-    DUB.definePlaylist: function(playlistID, pageno, filterOn) {
+    DUB.definePlaylist = function(playlistID, pageno, filterOn) {
       try {
 	    //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
 	    var urlsongs = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlistSong.replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno
 	    return $.ajax({ url: urlsongs, type: "GET" });
 	  }
       catch(err) { console.log("DUB.definePlaylist: " + err.message); }
-	},
+	};
 
-    DUB.getPlaylist: function(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb) {
+    DUB.getPlaylist = function(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb) {
      try {
     		//botDebug.debugMessage(true, "getPlaylist pageno: " + pageno);
     	  $.when(DUB.definePlaylist(playlistID, pageno, filterOn)).done(function(a1) {
@@ -391,11 +391,11 @@
     	  });
     	}
         catch(err) { console.log("getPlaylist: " + err.message); }
-    },
+    };
 
 	
 	var DUBPlaylists = [];
-	var DUBCurrPlaylist
+	var DUBCurrPlaylist = [];
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
