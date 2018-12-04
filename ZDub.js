@@ -753,12 +753,11 @@
 				exportSongs : function(){
 				  //DUB.getPlaylist();
 				  DUBPlaylist = DUB.definePlaylists();
-				  var plists = DUB.definePlaylists();
-				  console.log("Playlist Len: " + plists.responseJSON.data.length);
-				  for (var i = 0; i < plists.responseJSON.data.length; i++) {
-					console.log("Playlist Name: " + plists.responseJSON.data[1].name);
-					console.log("  Playlist ID: " + plists.responseJSON.data[i]._id);
-					console.log(" Playlist CNT: " + plists.responseJSON.data[i].totalItems);
+				  console.log("Playlist Len: " + DUBPlaylist.responseJSON.data.length);
+				  for (var i = 0; i < DUBPlaylist.responseJSON.data.length; i++) {
+					console.log("Playlist Name: " + DUBPlaylist.responseJSON.data[1].name);
+					console.log("  Playlist ID: " + DUBPlaylist.responseJSON.data[i]._id);
+					console.log(" Playlist CNT: " + DUBPlaylist.responseJSON.data[i].totalItems);
 					//var pl = DUB.getPlaylist();
 					//DUB.exportData(pl);
 				  }
