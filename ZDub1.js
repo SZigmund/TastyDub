@@ -340,12 +340,13 @@
 	DUB.exportPlaylists = function(){
 	  console.log("Playlist Len: " + DUBPlaylists.responseJSON.data.length);
 	  //for (var i = 0; i < DUBPlaylists.responseJSON.data.length; i++) {
+	  for (var i = 0; i < 3; i++) {
 		var playlist = [];
 		var PLItem = DUBPlaylists.responseJSON.data[0];
 		console.log("------------------------------------------------------------------------------------------------------");
 		console.log("LOADING Playlist: " + PLItem._id + " " + PLItem.name + ": " + PLItem.totalItems.toString());
 		DUB.getPlaylist(playlist, PLItem._id, PLItem.name, PLItem.totalItems, 1, "", DUB.exportPlaylist);
-      //}
+      }
 	};
 	
 	DUB.exportPlaylist = function(playlist, playlistID, playlistName, playlistCnt) {
@@ -379,22 +380,16 @@
             // the code here will be executed when all four ajax requests resolve.
             // a1 is a list of length 3 containing the response text,
             // status, and jqXHR object for each of the four ajax calls respectively.
-			console.log("DONE A1: " + a1.data.length.toString());
     		var DUBCurrPlaylist = a1;
             for (var i = 0; i < DUBCurrPlaylist.data.length; i++) {
     	      playlist.push(new DUB.playListItem(DUBCurrPlaylist.data[i]));
     		}
     		//dubBot.queue.dubQueue = playlist;
     		pageno++;
-    		if (DUBCurrPlaylist.data.length > 0 && filterOn.length === 0) {
-    			console.log("recursive call");
+    		if (DUBCurrPlaylist.data.length > 0 && filterOn.length === 0)
 				DUB.getPlaylist(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb);
-			}
-    		else {
-    			console.log("callback");
+    		else
     			cb(playlist, playlistID, playlistName, playlistCnt);
-    			console.log("after callback");
-			}
     	  });
     	}
         catch(err) { console.log("getPlaylist: " + err.message); }
