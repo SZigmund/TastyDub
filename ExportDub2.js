@@ -3,13 +3,8 @@
 	if (!document.location.host.match(/dubtrackz\.fm$/i)){
 	  console.log("Must run on dubtrack");
 	}
-	window.DUB = {};
-	_.extend(DUB, Backbone.Events);
-	window.DUBAPI = {};
-	_.extend(DUBAPI, Backbone.Events);
 //	window.PLUGAPI = {};
 //	_.extend(PLUGAPI, Backbone.Events);
-	
 //	PLUGAPI.chatLog = function(msg) {
 //	  try       {  API.chatLog(msg);  }
 //	 catch(err) {  basicBot.roomUtilities.logException("chatLog: " + err.message); }
@@ -17,6 +12,17 @@
 //	PLUGAPI.getUsername = function(msg) {
 //      return API.getUser().username;
 //	};
+//	PLUG.importSongs = function(){
+//	  if (API.getUser().username == "Doc_Z") {
+//	    DUBPlaylists = DUB.definePlaylists();
+//	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
+//		}
+//	};
+
+	window.DUB = {};
+	_.extend(DUB, Backbone.Events);
+	window.DUBAPI = {};
+	_.extend(DUBAPI, Backbone.Events);
 
 	DUBAPI.chatLog = function(txt) {
 	  var b = new Dubtrack.View.chatLoadingItem;
@@ -26,12 +32,6 @@
       return Dubtrack.session.get("username");
 	};
 
-	PLUG.importSongs = function(){
-	  if (API.getUser().username == "Doc_Z") {
-	    DUBPlaylists = DUB.definePlaylists();
-	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
-		}
-	};
 	DUB.exportSongs = function(){
 	  if (DUBAPI.getUsername() == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
