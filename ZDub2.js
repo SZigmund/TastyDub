@@ -8,6 +8,7 @@
 	
 	window.API = {};
 	_.extend(API, Backbone.Events);
+	_.extend(DUB, Backbone.Events);
 	
 	var waitlist = [],
 		lastMedia = {song:null, songInfo: null, user: null, startTime: 0};
