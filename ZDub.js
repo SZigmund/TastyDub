@@ -329,6 +329,15 @@
 		return ajax(url,'GET',null,callback);
 	};
 
+    DUB.definePlaylists: function(playlistID, pageno, filterOn) {
+    try {
+	  //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
+	  var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
+	  return $.ajax({ url: urlPL, type: "GET" });
+	}
+    catch(err) { UTIL.logException("definePlaylist: " + err.message); }
+	};
+	
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
@@ -740,7 +749,7 @@
 				},
 				exportSongs : function(){
 				 //DUB.getPlaylist();
-				 var pl = API.getPlaylists();
+				 var pl = DUB.definePlaylists();
 				 console.log("Playlist Len: " + pl.length);
 				 for (var i in pl) {
 					console.log("Playlist Name: " + pl[i].name);
