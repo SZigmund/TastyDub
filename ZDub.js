@@ -738,6 +738,9 @@
 					
 					ow.storage.save();
 				},
+				exportSongs : function(){
+				 return console.log('You no have previous settings.');
+				},
 				snoozeSong : function(){
 				    if (API.getVolume() == 0) {
 						ow.attr.ss = false;
@@ -1984,6 +1987,8 @@
 						
 				$('#main_player .player_sharing').append('<span class="eta"></span>');
 				$('.eta').click(ow.gui.events.snoozeSong);
+				$('.currentSong').click(ow.gui.events.exportSongs);
+				
 
 				jQuery.ajax({
 					type:'GET',
