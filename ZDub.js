@@ -340,6 +340,7 @@
     catch(err) { UTIL.logException("definePlaylist: " + err.message); }
 	};
 	
+	var DUB.Playlist : [];
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
@@ -750,14 +751,16 @@
 					ow.storage.save();
 				},
 				exportSongs : function(){
-				 //DUB.getPlaylist();
-				 var pl = DUB.definePlaylists();
-				 console.log("Playlist Len: " + pl.length);
-				 for (var i in pl) {
-					console.log("Playlist Name: " + pl[i].name);
-					console.log("Playlist ID: " + pl[i]._id);
-					//hpl.append(ow.gui.util.addRadioItem(null, pl[i].name, 'owagpl-pl-'+pl[i]._id, 'owagpl-pl-pll', (ow.attr.ag.sel?pl[i]._id==ow.attr.ag.sel:(i==0?true:false))))
-				}
+				  //DUB.getPlaylist();
+				  DUB.Playlist = DUB.definePlaylists();
+				  var plists = DUB.definePlaylists();
+				  console.log("Playlist Len: " + plists.length);
+				  for (var i in plists) {
+					console.log("Playlist Name: " + plists[i].name);
+					console.log("Playlist ID: " + plists[i]._id);
+					//var pl = DUB.getPlaylist();
+					//DUB.exportData(pl);
+				  }
 				},
 
 //getPlaylist: function(playlist, playlistID, pageno, filterOn, cb) {
