@@ -123,7 +123,7 @@
 	var ow = {
 		main : {
 			init : function(){
-				ow.main.loadItems();
+				ow.main.addEvents();
 			},
 			addEvents: function(){
 				//$('.community__name').click(PLUG.importSongs);  	//Plug
