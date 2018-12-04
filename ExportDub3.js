@@ -10,14 +10,14 @@ var DBUAPI = {
 };
 var	DUBEXPORT = {
 	DUBPlaylists: [],
-    exportSongs = function(){
+    exportSongs: function(){
 	  if (DUBAPI.getUsername() == "Doc_Z") {
 	    DUBPlaylists = DUBEXPORT.definePlaylists();
 	    setTimeout(function () { DUBEXPORT.exportPlaylists(); }, 2000);
 		}
 	},
 
-	exportPlaylists = function(){
+	exportPlaylists: function(){
 	  console.log("Playlist Len: " + DUBPlaylists.responseJSON.data.length);
 	  //for (var i = 0; i < DUBPlaylists.responseJSON.data.length; i++) {
 	  for (var i = 0; i < 3; i++) {
@@ -29,7 +29,7 @@ var	DUBEXPORT = {
       }
 	},
 	
-	exportPlaylist = function(playlist, playlistID, playlistName, playlistCnt) {
+	exportPlaylist: function(playlist, playlistID, playlistName, playlistCnt) {
     try {
 		console.log(" EXPORT Playlist: " + playlistID + " " + playlistName + ": " + playlistCnt + " - " + playlist.length);
 		ExportJSON(playlist, playlistName);
@@ -37,7 +37,7 @@ var	DUBEXPORT = {
     catch(err) { console.log("DUBEXPORT.exportPlaylist: " + err.message); }
 	},
 
-    definePlaylists = function() {
+    definePlaylists: function() {
     try {
 	  //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
 	  //var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
@@ -47,7 +47,7 @@ var	DUBEXPORT = {
     catch(err) { console.log("DUBEXPORT.definePlaylists: " + err.message); }
 	},
 
-    definePlaylist = function(playlistID, pageno, filterOn) {
+    definePlaylist: function(playlistID, pageno, filterOn) {
       try {
 	    //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
 	    //var urlsongs = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlistSong.replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno
@@ -57,7 +57,7 @@ var	DUBEXPORT = {
       catch(err) { console.log("DUBEXPORT.definePlaylist: " + err.message); }
 	},
 
-    getPlaylist = function(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb) {
+    getPlaylist: function(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb) {
      try {
     		//botDebug.debugMessage(true, "getPlaylist pageno: " + pageno);
     	  $.when(DUBEXPORT.definePlaylist(playlistID, pageno, filterOn)).done(function(a1) {
@@ -79,7 +79,7 @@ var	DUBEXPORT = {
         catch(err) { console.log("getPlaylist: " + err.message); }
     },
 
-	playListItem = function (dubPlaylistItem) {
+	playListItem: function (dubPlaylistItem) {
 		try {
 			var track = DUBEXPORT.formatTrack(dubPlaylistItem._song);
 			var listItem = {track: track};
@@ -88,7 +88,7 @@ var	DUBEXPORT = {
 		catch(err) { console.log("DUBEXPORT.playListItem: " + err.message); }
 	},
 
-	formatTrack = function(dubSonginfo) {
+	formatTrack: function(dubSonginfo) {
 		try {
 		  var track = {songLength: 0, songName: "", songMediaType: "", songMediaId: "", dubSongID: "", mid: ""};
 		  if (dubSonginfo === null) return track;
@@ -103,7 +103,7 @@ var	DUBEXPORT = {
 		catch(err) { console.log("DUBEXPORT.formatTrack: " + err.message); }
     },
 
-    ExportJSON = function(jsonData, fileName) {
+    ExportJSON: function(jsonData, fileName) {
       try {
 		var dataStr = JSON.stringify(jsonData);
         var dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
