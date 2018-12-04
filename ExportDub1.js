@@ -121,6 +121,8 @@
 		}
 		catch(err) { console.log("DUB.formatTrack: " + err.message); }
     };
+
+	"use strict";
     ExportJSON = function(jsonData, fileName) {
       try {
         console.log("ExportJSON:0");
