@@ -8,6 +8,7 @@
 	
 	window.API = {};
 	_.extend(API, Backbone.Events);
+	window.DUB = {};
 	_.extend(DUB, Backbone.Events);
 	
 	var waitlist = [],
