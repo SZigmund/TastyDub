@@ -1,7 +1,8 @@
 /*	Alternative API as modified by Doc_Z */
 (function(){
-	if (!document.location.host.match(/dubtrackz\.fm$/i)){
+	if (!document.location.host.match(/dubtrack\.fm$/i)){
 	  console.log("Must run on dubtrack");
+	  return;
 	}
 //	window.PLUGAPI = {};
 //	_.extend(PLUGAPI, Backbone.Events);
@@ -53,6 +54,7 @@
 	DUB.exportPlaylist = function(playlist, playlistID, playlistName, playlistCnt) {
     try {
 		console.log(" EXPORT Playlist: " + playlistID + " " + playlistName + ": " + playlistCnt + " - " + playlist.length);
+		ExportJSON(playlist, playlistName);
 	}
     catch(err) { console.log("DUB.exportPlaylist: " + err.message); }
 	};
@@ -104,7 +106,7 @@
 			return listItem;
 		}
 		catch(err) { console.log("DUB.playListItem: " + err.message); }
-	  };
+	};
 	DUB.formatTrack = function(dubSonginfo) {
 		try {
 		  var track = {songLength: 0, songName: "", songMediaType: "", songMediaId: "", dubSongID: "", mid: ""};
@@ -118,8 +120,19 @@
 		  return track;
 		}
 		catch(err) { console.log("DUB.formatTrack: " + err.message); }
-	  };
-
+    };
+    ExportJSON = function(jsonData, fileName) {
+      try {
+        let dataStr = JSON.stringify(jsonData);
+        let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        let exportFileDefaultName = fileName + '.json';
+        let linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+      }
+      catch(err) { console.log("ExportJSON: " + err.message); }
+	};
 	var DUBPlaylists = [];
 })();
 
@@ -127,20 +140,10 @@
 	var ow = {
 		main : {
 			init : function(){
-				try {
-				//ow.main.addEvents();
-				console.log("init");
-				DUB.exportSongs();
-				}
+				try        { DUB.exportSongs(); }
 				catch(err) { console.log("init: " + err.message); }
-			},
-			addEvents: function(){
-				//$('.community__name').click(DUB.exportSongs);  	//Plug
-				$('.community__name').click(console.log("name"));  	//Plug
-				$('.community__meta').click(console.log("meta"));  	//Plug
 			},
 		}
 	};
-	console.log("FUN1");
 	ow.main.init();
 })();
