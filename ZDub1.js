@@ -335,7 +335,8 @@
 	  if (API.getUser().username == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
 	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
-	  }
+		}
+	};
 	DUB.exportSongs = function(){
 	  if (Dubtrack.session.get("username") == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
