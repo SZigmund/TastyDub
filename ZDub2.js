@@ -331,16 +331,71 @@
 		return ajax(url,'GET',null,callback);
 	};
 
+	DUB.exportSongs : function(){
+	  //DUB.getPlaylist();
+	  DUBPlaylists = DUB.definePlaylists();
+	  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
+	};
+	DUB.exportPlaylists : function(){
+	  console.log("Playlist Len: " + DUBPlaylists.responseJSON.data.length);
+	  for (var i = 0; i < DUBPlaylists.responseJSON.data.length; i++) {
+		var playlist = [];
+		var PLItem = DUBPlaylists.responseJSON.data[i];
+		console.log("------------------------------------------------------------------------------------------------------");
+		console.log("LOADING Playlist: " + PLItem._id + " " + DUBPlaylists.responseJSON.data[1].name) + PLItem.totalItems;
+		API.getPlaylist(playlist, PLItem._id, PLItem.name, PLItem.totalItems, 1, "", DUB.exportPlaylist);
+	  }
+	};
+	
+	DUB.exportPlaylist(playlist, playlistID, playlistName, playlistCnt) {
+    try {
+		console.log(" EXPORT Playlist: " + playlistID + " " + playlistName + ": " + playlistCnt + " - " + playlist.length);
+	}
+    catch(err) { console.log("DUB.exportPlaylist: " + err.message); }
+	};
+
     DUB.definePlaylists = function() {
     try {
 	  //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
 	  var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
 	  return $.ajax({ url: urlPL, type: "GET" });
 	}
-    catch(err) { UTIL.logException("definePlaylist: " + err.message); }
+    catch(err) { console.log("DUB.definePlaylists: " + err.message); }
 	};
+    DUB.definePlaylist: function(playlistID, pageno, filterOn) {
+      try {
+	    //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
+	    var urlsongs = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlistSong.replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno
+	    return $.ajax({ url: urlsongs, type: "GET" });
+	  }
+      catch(err) { console.log("DUB.definePlaylist: " + err.message); }
+	},
+
+    DUB.getPlaylist: function(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb) {
+     try {
+    		//botDebug.debugMessage(true, "getPlaylist pageno: " + pageno);
+    	  $.when(DUB.definePlaylist(playlistID, pageno, filterOn)).done(function(a1) {
+            // the code here will be executed when all four ajax requests resolve.
+            // a1 is a list of length 3 containing the response text,
+            // status, and jqXHR object for each of the four ajax calls respectively.
+    		DUBCurrPlaylist = a1;
+            for (var i = 0; i < DUBCurrPlaylist.data.length; i++) {
+    	      playlist.push(new API.playListItem(DUBCurrPlaylist.data[i]));
+    		}
+    		//dubBot.queue.dubQueue = playlist;
+    		pageno++;
+    		if (DUBCurrPlaylist.data.length > 0 && filterOn.length === 0)
+    			API.getPlaylist(playlist, playlistID, playlistName, playlistCnt, pageno, filterOn, cb);
+    		else
+    			cb(playlist, playlistID, playlistName, playlistCnt);
+    	  });
+    	}
+        catch(err) { console.log("getPlaylist: " + err.message); }
+    },
+
 	
-	var DUBPlaylist = [];
+	var DUBPlaylists = [];
+	var DUBCurrPlaylist
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
@@ -750,44 +805,7 @@
 					
 					ow.storage.save();
 				},
-				exportSongs : function(){
-				  //DUB.getPlaylist();
-				  DUBPlaylist = DUB.definePlaylists();
-				  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
-				},
-				exportPlaylists : function(){
-				  console.log("Playlist Len: " + DUBPlaylist.responseJSON.data.length);
-				  for (var i = 0; i < DUBPlaylist.responseJSON.data.length; i++) {
-					console.log("Playlist Name: " + DUBPlaylist.responseJSON.data[1].name);
-					console.log("  Playlist ID: " + DUBPlaylist.responseJSON.data[i]._id);
-					console.log(" Playlist CNT: " + DUBPlaylist.responseJSON.data[i].totalItems);
-					//var pl = DUB.getPlaylist();
-					//DUB.exportData(pl);
-				  }
-				},
 
-//getPlaylist: function(playlist, playlistID, pageno, filterOn, cb) {
-// try {
-//		//botDebug.debugMessage(true, "getPlaylist pageno: " + pageno);
-//	  $.when(API.definePlaylist(playlistID, pageno, filterOn)).done(function(a1) {
-//        // the code here will be executed when all four ajax requests resolve.
-//        // a1 is a list of length 3 containing the response text,
-//        // status, and jqXHR object for each of the four ajax calls respectively.
-//		dubBot.queue.dubPlaylist = a1;
-//        for (var i = 0; i < dubBot.queue.dubPlaylist.data.length; i++) {
-//	      playlist.push(new API.playListItem(dubBot.queue.dubPlaylist.data[i]));
-//		}
-//		//dubBot.queue.dubQueue = playlist;
-//		pageno++;
-//		if (dubBot.queue.dubPlaylist.data.length > 0 && filterOn.length === 0)
-//			API.getPlaylist(playlist, playlistID, pageno, filterOn, cb);
-//		else
-//			cb(playlist, playlistID);
-//	  });
-//	}
-//    catch(err) { console.log("getPlaylist: " + err.message); }
-//	},
-				
 				snoozeSong : function(){
 				    if (API.getVolume() == 0) {
 						ow.attr.ss = false;
