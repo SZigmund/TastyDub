@@ -340,7 +340,7 @@
     catch(err) { UTIL.logException("definePlaylist: " + err.message); }
 	};
 	
-	var DUBPlaylist : [];
+	var DUBPlaylist = [];
 	var _rtb = Dubtrack.realtime.callback;
 
 	function getChatContext(){
