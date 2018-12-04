@@ -336,7 +336,7 @@
 	  DUBPlaylists = DUB.definePlaylists();
 	  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
 	};
-	DUB.exportPlaylists : function(){
+	DUB.exportPlaylists = function(){
 	  console.log("Playlist Len: " + DUBPlaylists.responseJSON.data.length);
 	  for (var i = 0; i < DUBPlaylists.responseJSON.data.length; i++) {
 		var playlist = [];
@@ -347,7 +347,7 @@
 	  }
 	};
 	
-	DUB.exportPlaylist(playlist, playlistID, playlistName, playlistCnt) {
+	DUB.exportPlaylist = function(playlist, playlistID, playlistName, playlistCnt) {
     try {
 		console.log(" EXPORT Playlist: " + playlistID + " " + playlistName + ": " + playlistCnt + " - " + playlist.length);
 	}
