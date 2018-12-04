@@ -753,6 +753,9 @@
 				exportSongs : function(){
 				  //DUB.getPlaylist();
 				  DUBPlaylist = DUB.definePlaylists();
+				  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
+				},
+				exportPlaylists : function(){
 				  console.log("Playlist Len: " + DUBPlaylist.responseJSON.data.length);
 				  for (var i = 0; i < DUBPlaylist.responseJSON.data.length; i++) {
 					console.log("Playlist Name: " + DUBPlaylist.responseJSON.data[1].name);
