@@ -5,26 +5,35 @@
 	}
 	window.DUB = {};
 	_.extend(DUB, Backbone.Events);
-	window.PLUG = {};
-	_.extend(PLUG, Backbone.Events);
+	window.DUBAPI = {};
+	_.extend(DUBAPI, Backbone.Events);
+//	window.PLUGAPI = {};
+//	_.extend(PLUGAPI, Backbone.Events);
 	
-	PLUG.chatLog = function(msg) {
-	try {
-		API.chatLog(msg);
-	}
-	catch(err) { basicBot.roomUtilities.logException("chatLog: " + err.message); }
+//	PLUGAPI.chatLog = function(msg) {
+//	  try       {  API.chatLog(msg);  }
+//	 catch(err) {  basicBot.roomUtilities.logException("chatLog: " + err.message); }
+//	};
+//	PLUGAPI.getUsername = function(msg) {
+//      return API.getUser().username;
+//	};
+
+	DUBAPI.chatLog = function(txt) {
+	  var b = new Dubtrack.View.chatLoadingItem;
+	  b.$el.text(txt).appendTo(Dubtrack.room.chat._messagesEl);
+	};
+	DUBAPI.getUsername = function(msg) {
+      return Dubtrack.session.get("username");
 	};
 
 	PLUG.importSongs = function(){
-	  console.log("TEST");
-	  console.log(API.getUser().username);
 	  if (API.getUser().username == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
 	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
 		}
 	};
 	DUB.exportSongs = function(){
-	  if (Dubtrack.session.get("username") == "Doc_Z") {
+	  if (DUBAPI.getUsername() == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
 	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
 		}
@@ -121,12 +130,12 @@
 				try {
 				//ow.main.addEvents();
 				console.log("init");
-				PLUG.importSongs();
+				DUB.exportSongs();
 				}
 				catch(err) { console.log("init: " + err.message); }
 			},
 			addEvents: function(){
-				//$('.community__name').click(PLUG.importSongs);  	//Plug
+				//$('.community__name').click(DUB.exportSongs);  	//Plug
 				$('.community__name').click(console.log("name"));  	//Plug
 				$('.community__meta').click(console.log("meta"));  	//Plug
 			},
