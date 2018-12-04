@@ -382,7 +382,7 @@
 			console.log("DONE A1: " + a1.data.length.toString());
     		var DUBCurrPlaylist = a1;
             for (var i = 0; i < DUBCurrPlaylist.data.length; i++) {
-    	      playlist.push(new API.playListItem(DUBCurrPlaylist.data[i]));
+    	      playlist.push(new DUB.playListItem(DUBCurrPlaylist.data[i]));
     		}
     		//dubBot.queue.dubQueue = playlist;
     		pageno++;
@@ -399,6 +399,28 @@
     	}
         catch(err) { console.log("getPlaylist: " + err.message); }
     };
+	DUB.playListItem = function (dubPlaylistItem) {
+		try {
+			var track = DUB.formatTrack(dubPlaylistItem._song);
+			var listItem = {track: track};
+			return listItem;
+		}
+		catch(err) { console.log("DUB.playListItem: " + err.message); }
+	  };
+	DUB.formatTrack = function(dubSonginfo) {
+		try {
+		  var track = {songLength: 0, songName: "", songMediaType: "", songMediaId: "", dubSongID: "", mid: ""};
+		  if (dubSonginfo === null) return track;
+		  track.songLength = parseInt(dubSonginfo.songLength) / 1000;   // API returns MS we convert to seconds for our use.
+		  track.songName = dubSonginfo.name;
+		  track.songMediaType = dubSonginfo.type;
+		  track.songMediaId = dubSonginfo.fkid;
+		  track.dubSongID = dubSonginfo._id;
+		  track.mid = dubSonginfo.type + ':' + dubSonginfo.fkid;
+		  return track;
+		}
+		catch(err) { console.log("DUB.formatTrack: " + err.message); }
+	  };
 
 	
 	var DUBPlaylists = [];
