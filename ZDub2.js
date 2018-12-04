@@ -332,6 +332,8 @@
 	};
 
 	PLUG.importSongs = function(){
+	  console.log("TEST");
+	  console.log(API.getUser().username);
 	  if (API.getUser().username == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
 	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
