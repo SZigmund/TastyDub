@@ -12,7 +12,9 @@ var	DUBEXPORT = {
 	DUBPlaylists: [],
     exportSongs: function(){
 	  if (DUBAPI.getUsername() == "Doc_Z") {
+	    console.log("CHECKB");
 	    DUBPlaylists = DUBEXPORT.definePlaylists();
+	    console.log("CHECKC");
 	    setTimeout(function () { DUBEXPORT.exportPlaylists(); }, 2000);
 		}
 	},
@@ -117,4 +119,6 @@ var	DUBEXPORT = {
       catch(err) { console.log("ExportJSON: " + err.message); }
 	}
 };
+console.log("CHECKA1");
 DUBEXPORT.exportSongs();
+console.log("CHECKA2");
