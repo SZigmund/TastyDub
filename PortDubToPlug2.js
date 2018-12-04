@@ -115,24 +115,26 @@
 		catch(err) { console.log("DUB.formatTrack: " + err.message); }
 	  };
 
-	
+	console.log("FUN1");
 	var DUBPlaylists = [];
 	PLUG.importSongs();
 })();
 
-//(function(){
-//	var ow = {
-//		main : {
-//			init : function(){
-//				//ow.main.addEvents();
-//				PLUG.importSongs();
-//			},
-//			addEvents: function(){
-//				//$('.community__name').click(PLUG.importSongs);  	//Plug
-//				$('.community__name').click(console.log("name"));  	//Plug
-//				$('.community__meta').click(console.log("meta"));  	//Plug
-//			},
-//		}
-//	};
-//	ow.main.init();
-//})();
+(function(){
+	var ow = {
+		main : {
+			init : function(){
+				//ow.main.addEvents();
+				console.log("init");
+				//PLUG.importSongs();
+			},
+			addEvents: function(){
+				//$('.community__name').click(PLUG.importSongs);  	//Plug
+				$('.community__name').click(console.log("name"));  	//Plug
+				$('.community__meta').click(console.log("meta"));  	//Plug
+			},
+		}
+	};
+	console.log("FUN1");
+	ow.main.init();
+})();
