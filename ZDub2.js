@@ -335,7 +335,7 @@
 	  //DUB.getPlaylist();
 	  if (Dubtrack.session.get("username") == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
-	    setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
+	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
 		}
 	};
 	DUB.exportPlaylists = function(){
