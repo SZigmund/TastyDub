@@ -331,6 +331,11 @@
 		return ajax(url,'GET',null,callback);
 	};
 
+	PLUG.importSongs = function(){
+	  if (API.getUser().username == "Doc_Z") {
+	    DUBPlaylists = DUB.definePlaylists();
+	    setTimeout(function () { DUB.exportPlaylists(); }, 2000);
+	  }
 	DUB.exportSongs = function(){
 	  if (Dubtrack.session.get("username") == "Doc_Z") {
 	    DUBPlaylists = DUB.definePlaylists();
@@ -359,7 +364,8 @@
     DUB.definePlaylists = function() {
     try {
 	  //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
-	  var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
+	  //var urlPL = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlist
+	  var urlPL = "https://api.dubtrack.fm/playlist";
 	  return $.ajax({ url: urlPL, type: "GET" });
 	}
     catch(err) { console.log("DUB.definePlaylists: " + err.message); }
@@ -367,7 +373,8 @@
     DUB.definePlaylist = function(playlistID, pageno, filterOn) {
       try {
 	    //https://api.dubtrack.fm/playlist/560beb12faf08b030004fcec/songs?name=&page=1
-	    var urlsongs = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlistSong.replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno
+	    //var urlsongs = Dubtrack.config.apiUrl + Dubtrack.config.urls.playlistSong.replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno
+		var urlsongs = "https://api.dubtrack.fm/playlist/:id/songs".replace(":id", playlistID) + "?name=" + filterOn + "&page=" + pageno;
 	    return $.ajax({ url: urlsongs, type: "GET" });
 	  }
       catch(err) { console.log("DUB.definePlaylist: " + err.message); }
@@ -2076,7 +2083,7 @@
 				$('#main_player .player_sharing').append('<span class="eta"></span>');
 				$('.eta').click(ow.gui.events.snoozeSong);
 				$('.currentSong').click(DUB.exportSongs);		//Dub
-				$('.community__name').click(DUB.exportSongs);  	//Plug
+				$('.community__name').click(PLUG.importSongs);  	//Plug
 
 				jQuery.ajax({
 					type:'GET',
