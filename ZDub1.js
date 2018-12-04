@@ -755,9 +755,10 @@
 				  DUBPlaylist = DUB.definePlaylists();
 				  var plists = DUB.definePlaylists();
 				  console.log("Playlist Len: " + plists.length);
-				  for (var i in plists) {
-					console.log("Playlist Name: " + plists[i].name);
-					console.log("Playlist ID: " + plists[i]._id);
+				  for (var i in plists.responseJSON.data) {
+					console.log("Playlist Name: " + plists.responseJSON.data[1].name);
+					console.log("  Playlist ID: " + plists.responseJSON.data[i]._id);
+					console.log(" Playlist CNT: " + plists.responseJSON.data[i].totalItems);
 					//var pl = DUB.getPlaylist();
 					//DUB.exportData(pl);
 				  }
