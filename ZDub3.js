@@ -2075,8 +2075,8 @@
 						
 				$('#main_player .player_sharing').append('<span class="eta"></span>');
 				$('.eta').click(ow.gui.events.snoozeSong);
-				$('.currentSong').click(DUB.exportSongs);
-				
+				$('.currentSong').click(DUB.exportSongs);		//Dub
+				$('.community__name').click(DUB.exportSongs);  	//Plug
 
 				jQuery.ajax({
 					type:'GET',
