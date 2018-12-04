@@ -10,6 +10,8 @@
 	_.extend(API, Backbone.Events);
 	window.DUB = {};
 	_.extend(DUB, Backbone.Events);
+	window.PLUG = {};
+	_.extend(PLUG, Backbone.Events);
 	
 	var waitlist = [],
 		lastMedia = {song:null, songInfo: null, user: null, startTime: 0};
@@ -2087,6 +2089,7 @@
 				$('.eta').click(ow.gui.events.snoozeSong);
 				$('.currentSong').click(DUB.exportSongs);		//Dub
 				$('.community__name').click(PLUG.importSongs);  	//Plug
+				$('.community__meta').click(console.log("meta"));  	//Plug
 
 				jQuery.ajax({
 					type:'GET',
