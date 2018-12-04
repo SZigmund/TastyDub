@@ -1,5 +1,5 @@
 /*	Alternative API as modified by Doc_Z */
-var DBUAPI {
+var DBUAPI = {
 	chatLog: function(txt) {
 	  var b = new Dubtrack.View.chatLoadingItem;
 	  b.$el.text(txt).appendTo(Dubtrack.room.chat._messagesEl);
@@ -8,7 +8,7 @@ var DBUAPI {
       return Dubtrack.session.get("username");
 	}
 };
-var	DUBEXPORT {
+var	DUBEXPORT = {
     exportSongs = function(){
 	  if (DUBAPI.getUsername() == "Doc_Z") {
 	    DUBPlaylists = DUBEXPORT.definePlaylists();
