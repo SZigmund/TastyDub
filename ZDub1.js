@@ -333,8 +333,10 @@
 
 	DUB.exportSongs = function(){
 	  //DUB.getPlaylist();
-	  DUBPlaylists = DUB.definePlaylists();
-	  setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
+	  if (Dubtrack.session.get("username") == "Doc_Z") {
+	    DUBPlaylists = DUB.definePlaylists();
+	    setTimeout(function () { ow.gui.events.exportPlaylists(); }, 2000);
+		}
 	};
 	DUB.exportPlaylists = function(){
 	  console.log("Playlist Len: " + DUBPlaylists.responseJSON.data.length);
@@ -2052,7 +2054,7 @@
 						
 				$('#main_player .player_sharing').append('<span class="eta"></span>');
 				$('.eta').click(ow.gui.events.snoozeSong);
-				$('.currentSong').click(ow.gui.events.exportSongs);
+				$('.currentSong').click(DUB.exportSongs);
 				
 
 				jQuery.ajax({
