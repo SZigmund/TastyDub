@@ -11,7 +11,8 @@ var DBUAPI = {
 var	DUBEXPORT = {
 	DUBPlaylists: [],
     exportSongs: function(){
-	  if (DUBAPI.getUsername() == "Doc_Z") {
+	  //if (DUBAPI.getUsername() == "Doc_Z") {
+	  if (DUBAPI.getUsername() == "larry_the_law") {
 	    console.log("CHECKB");
 	    DUBPlaylists = DUBEXPORT.definePlaylists();
 	    console.log("CHECKC");
